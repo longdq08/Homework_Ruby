@@ -1,0 +1,30 @@
+<h2>Add a user</h2>
+
+<form onsubmit="return validateForm()" action="/users" method="POST">
+  <label for="fname">Name:</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="fage">Age:</label><br>
+  <input type="text" id="fage" name="fage"><br>
+  <input type="submit" value="Submit" style="margin-top:10px">
+</form> 
+
+<script type = "text/javascript">
+  function validateForm() {
+    var nameFiled = document.getElementById("fname");
+    var ageFiled = document.getElementById("fage");
+    var name = nameFiled.value;
+    var age = ageFiled.value;
+    
+    if(name == "") {
+        alert("Name must not be empty");
+        nameFiled.focus();
+        return false;
+    }
+    if(age == "" || isNaN(age) || age < 0) {
+        alert("Age must be positive integer");
+        ageFiled.focus();
+        return false;
+    }
+    return true;
+  }
+</script>

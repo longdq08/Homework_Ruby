@@ -1,0 +1,32 @@
+<h2>Update user</h2>
+
+<form action="/users/<%= @user.id %>" method="POST" onsubmit="return validateForm()">
+  <input type="hidden" name="_method" value="PUT">
+  <label for="fname">Name:</label><br>
+  <input type="text" id="newName" name="newName" value=<%= @user.name %>><br>
+  <label for="fage">Age:</label><br>
+  <input type="text" id="newAge" name="newAge" value=<%= @user.age %>><br>
+  <input type="submit" value="Submit" style="margin-top:10px">
+</form> 
+<a href='/users'>Back</a>
+
+<script>
+  function validateForm() {
+    var newName = document.getElementById("newName");
+    var newAge = document.getElementById("newAge");
+    var name = newName.value;
+    var age = newAge.value;
+
+    if(name == "") {
+      alert("Name must not be empty");
+      newName.focus();
+      return false;
+    }
+    if(age == "" || isNaN(age) || age < 0) {
+      alert("Age must be positive number");
+      newAge.focus();
+      return false;
+    }
+    return true;
+  }
+</script>

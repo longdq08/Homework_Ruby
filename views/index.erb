@@ -1,0 +1,24 @@
+<h2>Names of all the user</h2>
+
+<table>
+  <% @users.each do |user| %>
+  <tr>
+    <th><%= user.name %> - <%= user.age %></th>
+    <th><form action="/users/<%= user.id %>" method="GET">
+        <input type="submit" value="Show">
+        </form>
+    </th>
+    <th><form action="/users/<%= user.id %>/edit">
+        <input type="submit" value="Update">
+        </form>
+    </th>
+    <th><form action="/users/<%= user.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+        </form>
+    </th>
+  </tr>
+  <% end %>
+</table>
+<a href = "/new">Add User</a>
+<a href = "/pictures">Show Pictures</a>
