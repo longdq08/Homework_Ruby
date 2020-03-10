@@ -1,0 +1,55 @@
+
+<style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+</style>
+
+<div>
+  <% Dir.foreach('public/uploads') do |picture| %>
+    <% if File.file?("public/uploads/#{picture}") %>
+    <div class="gallery">
+      <a target="_blank" href="/uploads/<%= picture %>>">
+        <img src="/uploads/<%= picture %>" alt="">
+      </a>
+      <div class="desc"><a href="/download/<%= picture %>">Download</a></div>
+      <div class="desc"><a href="/remove/<%= picture %>">Remove</a></div>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*">
+    <br/>
+    <input type="submit" name="upload" Value="Upload" style="width:87px; margin-top: 3px">
+  </form>
+</div>
+
+<%# <script>
+  var uploadFile = document.getElementById('file');
+  if(uploadFile) {
+    var uploadBtn = document.getElementById('uploadBtn');
+
+  }
+</script> %>
+  
+
